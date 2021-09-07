@@ -29,4 +29,9 @@ public class CinemaController {
     public Seat test() {
         return cinemaService.throwException();
     }
+
+    @GetMapping("/sendEmail")
+    public void sendEmail() {
+        cinemaService.sendEmail("weixuan", "exweixuan@gmail.com", 3);
+    }
 }

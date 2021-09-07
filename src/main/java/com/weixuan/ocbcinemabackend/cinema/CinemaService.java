@@ -4,6 +4,9 @@ import com.weixuan.ocbcinemabackend.repository.Seat;
 import com.weixuan.ocbcinemabackend.repository.SeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -14,6 +17,9 @@ public class CinemaService {
 
     @Autowired
     private SeatRepository seatRepository;
+
+    @Autowired
+    private JavaMailSender javaMailSender;
 
     public List<Seat> getSeats() {
         return seatRepository.findAll();
@@ -41,5 +47,18 @@ public class CinemaService {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Seat Not Found");
         }
+    }
+
+    public void sendEmail(String name, String email, int seatNo) {
+        SimpleMailMessage message = new SimpleMailMessage();
+
+
+
+        message.setTo(email);
+        message.setSubject("Booking For OCBCinema Confirmation");
+        message.setText("Hi " + name + "! \nThank your for booking a seat at OCBCinema! \n\n\n Your seat number is " +
+                seatNo);
+
+        javaMailSender.send(message);
     }
 }

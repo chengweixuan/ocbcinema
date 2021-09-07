@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -20,6 +19,8 @@ public class CinemaService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    final static int CINEMA_SIZE = 30;
 
     public List<Seat> getSeats() {
         return seatRepository.findAll();
@@ -42,6 +43,9 @@ public class CinemaService {
                 seat.setName(name);
                 seat.setEmail(email);
                 seatRepository.deleteById(seatNo);
+
+                sendEmail(name, email, seatNo);
+
                 return seatRepository.save(seat);
             }
         } else {
@@ -49,10 +53,22 @@ public class CinemaService {
         }
     }
 
+    private void clearCinema() {
+        for (int i = 1; i <= CINEMA_SIZE; i++) {
+            Seat emptySeat = new Seat();
+
+            emptySeat.setId(i);
+            emptySeat.setBooked(false);
+            emptySeat.setName("");
+            emptySeat.setEmail("");
+
+            seatRepository.deleteById(i);
+            seatRepository.save(emptySeat);
+        }
+    }
+
     public void sendEmail(String name, String email, int seatNo) {
         SimpleMailMessage message = new SimpleMailMessage();
-
-
 
         message.setTo(email);
         message.setSubject("Booking For OCBCinema Confirmation");

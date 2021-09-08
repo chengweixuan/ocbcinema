@@ -34,4 +34,9 @@ public class CinemaController {
     public void sendEmail() {
         cinemaService.sendEmail("weixuan", "exweixuan@gmail.com", 3);
     }
+
+    @GetMapping("/clear")
+    public void clearCinema() {
+        cinemaService.clearCinema();
+    }
 }

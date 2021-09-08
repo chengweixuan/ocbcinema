@@ -53,7 +53,7 @@ public class CinemaService {
         }
     }
 
-    private void clearCinema() {
+    public void clearCinema() {
         for (int i = 1; i <= CINEMA_SIZE; i++) {
             Seat emptySeat = new Seat();
 

@@ -14,6 +14,9 @@ import java.util.List;
 @Service
 public class CinemaService {
 
+    /**
+     * mySQL repository containing the current seating state
+     */
     @Autowired
     private SeatRepository seatRepository;
 
@@ -30,6 +33,15 @@ public class CinemaService {
         throw  new ResponseStatusException(HttpStatus.CONFLICT, "Seat Is Booked");
     }
 
+    /**
+     * Updates the seat repository to reflect to newly booked seat
+     * Calls sendEmail to send an email to the user
+     * Returns unexpected errors as HTTP response status to be handled by front end
+     * @param seatNo seat to be booked
+     * @param name name of user to be used in email
+     * @param email email of the user
+     * @return details of the seat saved into the repository
+     */
     public Seat bookSeat(int seatNo, String name, String email) {
         Seat seat = new Seat();
 
@@ -53,6 +65,9 @@ public class CinemaService {
         }
     }
 
+    /***
+     * Used to reset the cinema
+     */
     public void clearCinema() {
         for (int i = 1; i <= CINEMA_SIZE; i++) {
             Seat emptySeat = new Seat();
@@ -67,6 +82,12 @@ public class CinemaService {
         }
     }
 
+    /**
+     * Sends an email to the user notifying them of their booking
+     * @param name name of user
+     * @param email email of user
+     * @param seatNo seat booked by user
+     */
     public void sendEmail(String name, String email, int seatNo) {
         SimpleMailMessage message = new SimpleMailMessage();
 

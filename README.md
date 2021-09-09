@@ -21,7 +21,7 @@ A mySQL database is used to store the current seating state.
 This Spring Boot Backend is deployed live at:  https://ocbcinema-backend.herokuapp.com/  
 Endpoints for backend can be viewed [here](https://ocbcinema-backend.herokuapp.com/swagger-ui.html#/cinema-controller).
 
-Repository for the frontend component is found at: https://github.com/chengweixuan/ocbcinema-front/
+Repository for the frontend component is found at: https://github.com/chengweixuan/ocbcinema-frontend/
 
 
 ### Local Set Up
@@ -31,7 +31,7 @@ Repository for the frontend component is found at: https://github.com/chengweixu
 * Clone this repository and build the maven package
 * Run jar file
 #### Frontend
-* Follow set up instructions at: https://github.com/chengweixuan/ocbcinema-front/
+* Follow set up instructions at: https://github.com/chengweixuan/ocbcinema-frontend/
 
 ### Security
 

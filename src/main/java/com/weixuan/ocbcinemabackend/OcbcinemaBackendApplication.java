@@ -30,7 +30,7 @@ public class OcbcinemaBackendApplication {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         // *** URL below needs to match the Vue client URL and port ***
-        config.setAllowedOrigins(Collections.singletonList("https://ocbcinema.herokuapp.com/#/"));
+        config.setAllowedOrigins(Collections.singletonList("https://ocbcinema.herokuapp.com/"));
         config.setAllowedMethods(Collections.singletonList("*"));
         config.setAllowedHeaders(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);

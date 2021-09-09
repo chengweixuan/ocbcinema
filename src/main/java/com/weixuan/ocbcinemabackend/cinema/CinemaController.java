@@ -25,16 +25,6 @@ public class CinemaController {
         return cinemaService.bookSeat(seatNo, name, email);
     }
 
-    @GetMapping("/test")
-    public Seat test() {
-        return cinemaService.throwException();
-    }
-
-    @GetMapping("/sendEmail")
-    public void sendEmail() {
-        cinemaService.sendEmail("weixuan", "exweixuan@gmail.com", 3);
-    }
-
     @GetMapping("/clear")
     public void clearCinema() {
         cinemaService.clearCinema();
